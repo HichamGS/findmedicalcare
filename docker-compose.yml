@@ -1,0 +1,32 @@
+version: "3"
+services:
+  db:
+    image: postgres
+    container_name: fmc-postgres
+    volumes:
+      - ./tmp/db:/var/lib/postgresql/data
+    environment:
+      POSTGRES_PASSWORD: password
+  web:
+    build: .
+    container_name: fmc-ruby
+    command: bash -c "rm -f tmp/pids/server.pid && bundle exec rails s -p 3000 -b '0.0.0.0'"
+    volumes:
+      - .:/app
+    ports:
+      - "3000:3000"
+    depends_on:
+      - db
+  pgadmin:
+    container_name: fmc-pgadmin
+    image: dpage/pgadmin4
+    environment:
+      PGADMIN_DEFAULT_EMAIL: ${PGADMIN_DEFAULT_EMAIL:-pgadmin4@pgadmin.org}
+      PGADMIN_DEFAULT_PASSWORD: ${PGADMIN_DEFAULT_PASSWORD:-admin}
+    volumes:
+       - ./tmp/pgadmin:/root/.pgadmin
+    ports:
+      - "${PGADMIN_PORT:-5051}:80"
+    links:
+      - db
+    restart: unless-stopped

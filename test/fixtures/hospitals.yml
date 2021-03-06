@@ -1,0 +1,26 @@
+# == Schema Information
+#
+# Table name: hospitals
+#
+#  id            :bigint           not null, primary key
+#  location_id   :bigint
+#  name          :string
+#  description   :text
+#  type_hospital :string
+#  created_at    :datetime         not null
+#  updated_at    :datetime         not null
+#
+
+one:
+  location: one
+  name: MyString
+  name: MyString
+  description: MyText
+  type: 
+
+two:
+  location: two
+  name: MyString
+  name: MyString
+  description: MyText
+  type: 

@@ -1,0 +1,27 @@
+# == Schema Information
+#
+# Table name: reviews
+#
+#  id          :bigint           not null, primary key
+#  rating      :float
+#  comment     :text
+#  doctor_id   :bigint
+#  hospital_id :bigint
+#  pharmacy_id :bigint
+#  created_at  :datetime         not null
+#  updated_at  :datetime         not null
+#
+
+one:
+  rating: 1.5
+  comment: MyString
+  doctor: one
+  hospital: 
+  pharmacy: one
+
+two:
+  rating: 1.5
+  comment: MyString
+  doctor: two
+  hospital: 
+  pharmacy: two

@@ -1,0 +1,24 @@
+# == Schema Information
+#
+# Table name: hours
+#
+#  id          :bigint           not null, primary key
+#  Day         :string
+#  start       :time
+#  end         :time
+#  location_id :bigint
+#  created_at  :datetime         not null
+#  updated_at  :datetime         not null
+#
+
+one:
+  Day: MyString
+  start: 2021-03-06 18:37:59
+  end: 2021-03-06 18:37:59
+  location: one
+
+two:
+  Day: MyString
+  start: 2021-03-06 18:37:59
+  end: 2021-03-06 18:37:59
+  location: two

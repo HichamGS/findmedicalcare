@@ -1,0 +1,23 @@
+# == Schema Information
+#
+# Table name: doctors
+#
+#  id          :bigint           not null, primary key
+#  location_id :bigint
+#  name        :string
+#  description :text
+#  created_at  :datetime         not null
+#  updated_at  :datetime         not null
+#
+
+one:
+  specialty: one
+  location: one
+  name: MyString
+  description: MyString
+
+two:
+  specialty: two
+  location: two
+  name: MyString
+  description: MyString
