@@ -7,6 +7,26 @@ services:
       - ./tmp/db:/var/lib/postgresql/data
     environment:
       POSTGRES_PASSWORD: password
+  redis:
+    image: redis:latest
+    container_name: fmc-redis
+    ports:
+      - "${REDIS_PORT}:${REDIS_PORT}"
+    command: redis-server
+    volumes:
+      - ./tmp/redis:/data
+    env_file:
+      - .env
+  sidekiq:
+    build: .
+    container_name: fmc-sidekiq
+    command: bundle exec sidekiq
+    depends_on:
+      - redis
+    volumes:
+      - .:/app
+    env_file:
+      - .env
   web:
     build: .
     container_name: fmc-ruby
@@ -17,6 +37,9 @@ services:
       - "3000:3000"
     depends_on:
       - db
+      - sidekiq
+    env_file:
+      - .env
   pgadmin:
     container_name: fmc-pgadmin
     image: dpage/pgadmin4
